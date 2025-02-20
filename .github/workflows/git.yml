@@ -6,6 +6,9 @@ on:
       run:
         required: true
         type: string
+      artifact-name:
+        type: string
+
       commit_message:
         required: true
         type: string
@@ -16,7 +19,7 @@ on:
       tagging_message:
         required: false
         type: string
-    
+
 jobs:
   git:
     runs-on: ubuntu-latest
@@ -24,6 +27,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Download artifact
+        if: inputs.artifact-name
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ inputs.artifact-name }}
       - name: Prepare
         run: ${{ inputs.run }}
 
