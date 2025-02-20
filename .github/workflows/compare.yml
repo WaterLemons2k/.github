@@ -9,6 +9,12 @@ on:
       new:
         required: true
         type: string
+
+      artifact-name:
+        type: string
+      artifact-path:
+        type: string
+
     outputs:
       changed:
         value: ${{ jobs.cmp.outputs.changed }}
@@ -43,3 +49,10 @@ jobs:
             echo "changed=true" >> $GITHUB_OUTPUT
             echo "version=$(cat VERSION)" >> $GITHUB_OUTPUT
           fi
+
+      - name: Upload artifact
+        if: inputs.artifact-path
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.artifact-name }}
+          path: ${{ inputs.artifact-path }}
