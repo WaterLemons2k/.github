@@ -29,7 +29,7 @@ jobs:
 
       - name: Download artifact
         if: inputs.artifact-name
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: ${{ inputs.artifact-name }}
       - name: Prepare
