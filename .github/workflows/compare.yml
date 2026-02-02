@@ -23,7 +23,7 @@ on:
 
 jobs:
   cmp:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     outputs:
       changed: ${{ steps.cmp.outputs.changed }}
       version: ${{ steps.cmp.outputs.version }}
